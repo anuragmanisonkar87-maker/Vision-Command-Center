@@ -1,0 +1,296 @@
+/* ============================================================
+   GWV VISION CENTER — DESIGN SYSTEM
+   Tailwind v4 utilities + custom plain-CSS tokens.
+   ============================================================ */
+@import "tailwindcss";
+
+/* Tailwind v4 theme tokens — registering these makes utilities like
+   bg-off, text-gold, border-line, bg-gold-pale, border-gold-mid,
+   text-muted-foreground, font-serif, font-sans available with ALL
+   variants (hover:, focus:, /40 alpha, etc.). The ported IPC Task
+   Manager components rely on these. */
+@theme {
+  --color-off: #F7F6F3;
+  --color-line: #E8E5DE;
+  --color-gold: #C8A84B;
+  --color-gold-pale: #FBF6E9;
+  --color-gold-mid: #E8D49A;
+  --color-gold-deep: #7A5E10;
+  --color-muted-foreground: #6B6158;
+  --color-background: #F5F0E8;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Figtree", sans-serif;
+}
+
+/* Fonts loaded via <link> in src/routes/__root.tsx head(). */
+
+:root {
+  --parchment: #F5F0E8;
+  --parchment2: #EDE7D9;
+  --parchment3: #E4DDD0;
+  --ivory: #FDFAF4;
+  --ink: #1C1814;
+  --ink2: #3A342E;
+  --ink3: #6B6158;
+  --ink4: #9B8F84;
+  --gold: #7A5C1E;
+  --gold2: #A07828;
+  --gold3: #C9973A;
+  --gold-bg: rgba(122, 92, 30, .07);
+  --gold-border: rgba(122, 92, 30, .2);
+  --green: #1B5E35;
+  --green-bg: rgba(27, 94, 53, .06);
+  --green-b: rgba(27, 94, 53, .18);
+  --red: #8B2020;
+  --red-bg: rgba(139, 32, 32, .05);
+  --amber: #7A4E10;
+  --amber-bg: rgba(122, 78, 16, .07);
+  --border: #DDD6CA;
+  --border2: #CFC8BA;
+  --sidebar-w: 268px;
+
+  /* brand colours */
+  --brand-ipc: #C9973A;
+  --brand-mkt: #6090E0;
+  --brand-mul: #c4697e;
+  --brand-ios: #9B7FCA;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Figtree', sans-serif;
+  background: var(--parchment);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+select { font-family: inherit; }
+
+/* scrollbar */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: var(--parchment); }
+*::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--ink4); }
+
+/* ── UTILITIES ── */
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold2);
+}
+.panel {
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow .2s;
+}
+.panel:hover { box-shadow: 0 4px 20px rgba(28, 24, 20, .06); }
+.ph {
+  padding: 22px 26px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.panel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+  letter-spacing: -.01em;
+}
+.panel-sub { font-size: 12px; color: var(--ink4); line-height: 1.45; }
+.panel-body { padding: 24px 28px; }
+
+/* ── Global table polish (Team Members, Access Matrix, Module Registry,
+   Login Access, Audit Log, Position Presets, etc.) ── */
+.attr-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  color: var(--ink2);
+}
+.attr-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--parchment2);
+  color: var(--ink3);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border2);
+  white-space: nowrap;
+}
+.attr-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  line-height: 1.5;
+}
+.attr-table tbody tr:last-child td { border-bottom: none; }
+.attr-table tbody tr:hover td { background: var(--parchment); }
+.attr-table tbody td:first-child,
+.attr-table thead th:first-child { padding-left: 22px; }
+.attr-table tbody td:last-child,
+.attr-table thead th:last-child { padding-right: 22px; }
+
+/* Scoped override: keep media-buyer rcv2 tables on their tighter spec */
+.rcv2 .attr-table thead th,
+.rcv2 .attr-table tbody td { padding: 8px 10px; font-size: 12px; }
+.rcv2 .attr-table thead th:first-child,
+.rcv2 .attr-table tbody td:first-child { padding-left: 10px; }
+
+/* Comfortable horizontal scroll container for wide tables */
+.table-scroll {
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+.table-scroll::-webkit-scrollbar { height: 10px; }
+
+/* Spreadsheet cell focus outline for ledger tables */
+td > input[data-cell]:focus,
+td [data-cell]:focus {
+  box-shadow: inset 0 0 0 2px var(--green, #2a7d3a);
+  background: rgba(42, 125, 58, 0.04);
+}
+
+
+.status-pill {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.sp-profit { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-b); }
+.sp-loss { background: var(--red-bg); color: var(--red); border: 1px solid rgba(139,32,32,.15); }
+.sp-warn { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(122,78,16,.18); }
+
+.role-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .06em;
+  padding: 3px 9px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.rb-full { background: var(--ink); color: var(--parchment); }
+.rb-finance { background: var(--gold-bg); border: 1px solid var(--gold-border); color: var(--gold); }
+.rb-brand { background: var(--parchment2); border: 1px solid var(--border); color: var(--ink3); }
+.rb-entry { background: var(--parchment3); border: 1px solid var(--border2); color: var(--ink4); }
+
+.btn-sm {
+  padding: 6px 15px;
+  border-radius: 5px;
+  font-family: 'Figtree', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s;
+  border: 1px solid var(--border);
+  background: var(--ivory);
+  color: var(--ink3);
+}
+.btn-sm:hover { border-color: var(--border2); color: var(--ink); }
+.btn-primary { background: var(--ink); color: var(--parchment); border-color: var(--ink); }
+.btn-primary:hover { background: var(--ink2); }
+
+.num-pos { color: var(--green); }
+.num-neg { color: var(--red); }
+.num-neu { color: var(--ink2); }
+
+.select-mini {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 11px;
+  background: var(--ivory);
+  color: var(--ink3);
+  cursor: pointer;
+}
+
+/* animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .55; }
+}
+@keyframes empShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Clickable breadcrumb links */
+.crumb-link { transition: color .15s ease; }
+.crumb-link:hover { color: var(--gold3) !important; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Soft danger button for delete actions */
+.btn-danger {
+  color: var(--red) !important;
+  border-color: rgba(139,32,32,.3) !important;
+  background: var(--red-bg) !important;
+}
+.btn-danger:hover { background: rgba(139,32,32,.12) !important; }
+
+/* ── TASK MANAGER (ported from IPC) — semantic class shims so the
+   IPC components render without rewiring tailwind theme tokens. ── */
+.bg-off { background-color: #F7F6F3; }
+.bg-background { background-color: var(--parchment); }
+.bg-gold-pale { background-color: #FBF6E9; }
+.bg-gold-pale\/40 { background-color: rgba(251, 246, 233, .4); }
+.text-gold { color: #C8A84B; }
+.text-muted-foreground { color: #6B6158; }
+.border-line { border-color: #E8E5DE !important; }
+.border-gold-mid { border-color: #E8D49A !important; }
+.border-gold { border-color: #C8A84B !important; }
+.hover\:text-gold:hover { color: #C8A84B; }
+.hover\:text-black:hover { color: #000; }
+.hover\:border-gold:hover { border-color: #C8A84B !important; }
+.hover\:bg-gold-pale:hover { background-color: #FBF6E9; }
+.hover\:bg-off:hover { background-color: #F7F6F3; }
+.font-serif { font-family: 'Cormorant Garamond', serif; }
+.font-sans { font-family: 'Figtree', sans-serif; }
+
+.ipc-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 36px; padding: 0 14px; border-radius: 8px;
+  font-weight: 500; font-size: 13px; transition: background .15s, color .15s, border-color .15s;
+  border: 1px solid transparent;
+}
+.ipc-btn-black { background: #1C1814; color: #fff; border-color: #1C1814; }
+.ipc-btn-black:hover { background: #2A241E; }
+.ipc-btn-ghost { background: #fff; color: #1C1814; border-color: #E8E5DE; }
+.ipc-btn-ghost:hover { background: #F7F6F3; }
+.ipc-input {
+  display: block; width: 100%;
+  height: 36px; padding: 0 10px; border-radius: 7px;
+  border: 1px solid #E8E5DE; background: #fff;
+  font-size: 13px; color: #1C1814; font-family: inherit;
+}
+.ipc-input:focus { outline: none; border-color: #C8A84B; }
+.uppercase-label {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--ink3);
+}

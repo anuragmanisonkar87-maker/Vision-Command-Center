@@ -1,0 +1,1 @@
+ALTER TABLE public.delegation_tasks ADD COLUMN IF NOT EXISTS due_time time;

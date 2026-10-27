@@ -1,0 +1,454 @@
+/* Media Buyer / Daily Lead Reporting — Vision Center premium re-skin.
+ * Keeps every IPC classname (.rcv2 .btn, .step-card, .sum-card, .attr-table,
+ * .mb-card, .wiz-prog, .fi, .fl, .qsi-*) so the ported logic in
+ * MediaBuyerPerformanceModule.tsx and daily/* needs ZERO changes — only
+ * the visual tokens are remapped to match the .vc-roas (Seminar/Webinar
+ * ROAS) look: parchment cream, warm gold, soft borders, Cormorant titles,
+ * 44px inputs, generous breathing room.
+ */
+
+.rcv2 *,
+.rcv2 *::before,
+.rcv2 *::after { box-sizing: border-box; }
+
+.rcv2 {
+  /* Vision Center palette */
+  --gold: #B8923F;
+  --gp:   #F6EDD3;          /* gold pale */
+  --gm:   #E6CD8A;          /* gold mid border */
+  --gd:   #6E5414;          /* gold deep text */
+  --kk:   #1a140a;          /* ink */
+  --ww:   #ffffff;
+  --off:  #F8F2E2;          /* cream soft */
+  --paper:#FBF7EE;          /* parchment */
+  --bd:   #E6DBC2;          /* line */
+  --bd-soft: #EFE6CF;
+  --mt:   #8a7c63;          /* mute */
+  --ml:   #b8ac95;          /* mute soft */
+
+  /* Status colors (unchanged semantics, calmer tone) */
+  --rd:#B23A3A; --rp:#FBEFEF; --rb:#F0CFCF;
+  --gn:#1F7A48; --gnp:#EFF7F1; --gnb:#CFE6D5;
+  --bl:#3A5BB2;
+  --amb:#A87A1F; --ap:#FBF3DA; --ab:#E8D49A;
+
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--kk);
+  background: transparent;
+}
+
+/* ---------- Page header ---------- */
+.rcv2 .content { padding: 32px 4px; max-width: 960px; }
+.rcv2 .page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  margin-bottom: 6px;
+  color: var(--kk);
+}
+.rcv2 .page-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--mt);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* ---------- Buttons ---------- */
+.rcv2 .btn {
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 8px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity .12s, background .12s, border-color .12s;
+}
+.rcv2 .btn-k { background: var(--kk); color: var(--ww); }
+.rcv2 .btn-k:hover { opacity: .88; }
+.rcv2 .btn-g { background: var(--ww); color: var(--kk); border-color: var(--bd); }
+.rcv2 .btn-g:hover { background: var(--off); border-color: var(--ml); }
+.rcv2 .btn-sm { height: 32px; padding: 0 14px; font-size: 12px; }
+
+/* ---------- Field labels & inputs ---------- */
+.rcv2 .fl,
+.rcv2 .fl-sm {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--mt);
+  margin-bottom: 8px;
+}
+.rcv2 .fl-sm { font-size: 9px; margin-bottom: 6px; }
+
+.rcv2 .fi,
+.rcv2 .fsel,
+.rcv2 .fi-sm {
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--bd);
+  border-radius: 8px;
+  padding: 0 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  color: var(--kk);
+  background: var(--ww);
+  outline: none;
+  transition: border-color .12s, box-shadow .12s;
+}
+.rcv2 .fi-sm { height: 40px; font-size: 13px; padding: 0 12px; }
+.rcv2 .fi:focus,
+.rcv2 .fsel:focus,
+.rcv2 .fi-sm:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(184, 146, 63, 0.12);
+}
+.rcv2 .fi::placeholder,
+.rcv2 .fi-sm::placeholder { color: #c9bfa5; }
+.rcv2 .fi-sm.bad { border-color: var(--rd); }
+
+.rcv2 .two-col   { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px 24px; }
+.rcv2 .three-col { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px 24px; }
+.rcv2 .row-2     { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 720px) {
+  .rcv2 .two-col, .rcv2 .three-col, .rcv2 .row-2 { grid-template-columns: 1fr; }
+}
+
+/* ---------- Section divider ---------- */
+.rcv2 .sl {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--mt);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--bd-soft);
+}
+
+/* ---------- Step cards ---------- */
+.rcv2 .step-card {
+  border: 1px solid var(--bd);
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 18px;
+  background: var(--paper);
+}
+.rcv2 .step-card.active {
+  border-color: var(--gm);
+  background: var(--paper);
+  box-shadow: 0 1px 0 rgba(184,146,63,0.06);
+}
+.rcv2 .step-header { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+.rcv2 .step-num {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--kk);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; color: var(--gold); font-weight: 500;
+  flex-shrink: 0;
+}
+.rcv2 .step-card.active .step-num { background: var(--gold); color: var(--ww); }
+.rcv2 .step-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 500;
+  color: var(--kk);
+}
+.rcv2 .step-sub { font-size: 12px; color: var(--mt); margin-top: 3px; line-height: 1.5; }
+
+/* ---------- Add-MB dashed button ---------- */
+.rcv2 .add-mb-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 18px;
+  border: 1.5px dashed var(--bd);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--mt);
+  font-size: 13px;
+  background: transparent;
+  width: 100%;
+  transition: all .12s;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.rcv2 .add-mb-btn:hover {
+  border-color: var(--gold);
+  color: var(--gd);
+  background: var(--gp);
+}
+
+/* ---------- Summary cards (review step) ---------- */
+.rcv2 .sum-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 22px; }
+@media (max-width: 720px) { .rcv2 .sum-row { grid-template-columns: repeat(2,1fr); } }
+.rcv2 .sum-card { border-radius: 12px; padding: 18px 20px; }
+.rcv2 .sum-card.plain { background: var(--off); border: 1px solid var(--bd); }
+.rcv2 .sum-card.gold  { background: var(--gp);  border: 1px solid var(--gm); }
+.rcv2 .sum-card.grn   { background: var(--gnp); border: 1px solid var(--gnb); }
+.rcv2 .sum-lbl {
+  font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--mt); margin-bottom: 8px; font-weight: 600;
+}
+.rcv2 .sum-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 500; line-height: 1; margin-bottom: 2px;
+  color: var(--kk);
+}
+.rcv2 .sum-card.gold .sum-val { color: var(--gd); }
+.rcv2 .sum-card.grn  .sum-val { color: var(--gn); }
+
+/* ---------- Attribution / breakdown table ---------- */
+.rcv2 .attr-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 13px; margin-bottom: 22px;
+  background: var(--ww);
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.rcv2 .attr-table th {
+  text-align: left;
+  font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--mt);
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--bd);
+  background: var(--off);
+}
+.rcv2 .attr-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--bd-soft);
+  vertical-align: middle;
+}
+.rcv2 .attr-table tr:last-child td { border-bottom: none; }
+.rcv2 .attr-table tbody tr:hover td { background: var(--paper); }
+.rcv2 .mb-name-cell {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 500;
+}
+
+/* ---------- Pill segmented control ---------- */
+.rcv2 .wpills { display: flex; gap: 8px; flex-wrap: wrap; }
+.rcv2 .wpill {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--bd);
+  background: var(--ww);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--mt);
+  cursor: pointer;
+  transition: all .12s;
+  display: inline-flex;
+  align-items: center;
+}
+.rcv2 .wpill:hover { border-color: var(--ml); color: var(--kk); }
+.rcv2 .wpill.sel {
+  background: var(--gp);
+  color: var(--gd);
+  border-color: var(--gold);
+}
+
+/* ---------- Helper text ---------- */
+.rcv2 .helper { font-size: 11px; color: var(--mt); margin-top: 6px; line-height: 1.5; }
+
+/* ---------- Media-buyer card ---------- */
+.rcv2 .mb-card {
+  background: var(--ww);
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 14px;
+  position: relative;
+  transition: border-color .12s;
+}
+.rcv2 .mb-card:hover { border-color: var(--ml); }
+.rcv2 .mb-card.warn { border-color: var(--ab); background: #fdfaf0; }
+.rcv2 .mb-card-hd { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.rcv2 .mb-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--kk); color: var(--gold);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.rcv2 .mb-hd-t {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-weight: 500; color: var(--kk);
+}
+.rcv2 .mb-hd-s { font-size: 11px; color: var(--mt); margin-top: 2px; }
+
+.rcv2 .mb-card-x,
+.rcv2 .mb-remove {
+  margin-left: auto;
+  width: 30px; height: 30px;
+  border: 1px solid var(--bd); border-radius: 7px;
+  background: var(--ww); cursor: pointer;
+  color: var(--mt); font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .12s;
+}
+.rcv2 .mb-remove { margin-left: 0; width: 28px; height: 28px; }
+.rcv2 .mb-card-x:hover,
+.rcv2 .mb-remove:hover { background: var(--rp); color: var(--rd); border-color: var(--rb); }
+
+/* ---------- Sticky compact wizard stepper ---------- */
+.rcv2 .wiz-prog {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  background: var(--paper);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  padding: 14px 0 18px;
+  margin: -8px 0 18px;
+  border-bottom: 1px solid var(--bd-soft);
+}
+.rcv2 .wiz-step {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 0 0 auto; width: 96px; text-align: center;
+}
+.rcv2 .wiz-circle {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  border: 1px solid var(--bd);
+  background: var(--ww);
+  color: var(--mt);
+  transition: all .25s;
+}
+.rcv2 .wiz-step.active .wiz-circle {
+  background: var(--kk); color: var(--gold); border-color: var(--kk);
+}
+.rcv2 .wiz-step.done .wiz-circle {
+  background: var(--gold); color: var(--ww); border-color: var(--gold);
+}
+.rcv2 .wiz-lbl {
+  font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.10em; color: var(--mt);
+  margin-top: 8px; font-weight: 500;
+}
+.rcv2 .wiz-step.active .wiz-lbl { color: var(--kk); }
+.rcv2 .wiz-step.done   .wiz-lbl { color: var(--gd); }
+.rcv2 .wiz-line {
+  flex: 0 0 auto; width: 48px; height: 1px;
+  background: var(--bd);
+  margin: 14px -10px 0;
+  align-self: flex-start;
+  transition: background .25s;
+}
+.rcv2 .wiz-line.done { background: var(--gold); }
+
+/* ============ QuickSaveInput (global — used inside .rcv2) ============ */
+.qsi-wrap { position: relative; }
+.qsi-label {
+  display: block;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: #8a7c63;
+  margin-bottom: 8px;
+}
+.qsi-field { position: relative; }
+.qsi-input {
+  width: 100%; height: 44px;
+  border: 1px solid #E6DBC2;
+  border-radius: 8px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  padding: 0 14px;
+  background: #fff;
+  color: #1a140a;
+  transition: border-color 120ms, box-shadow 120ms;
+}
+.qsi-input:focus {
+  outline: none;
+  border-color: #B8923F;
+  box-shadow: 0 0 0 3px rgba(184, 146, 63, 0.12);
+}
+.qsi-plus {
+  position: absolute; right: 9px; top: 50%;
+  transform: translateY(-50%);
+  width: 26px; height: 26px; border-radius: 7px;
+  background: #B8923F; color: #fff; border: none;
+  font-size: 16px; line-height: 1; font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 120ms, transform 100ms;
+}
+.qsi-plus:hover { background: #6E5414; transform: translateY(-50%) scale(1.05); }
+.qsi-plus:active { transform: translateY(-50%) scale(.95); }
+.qsi-plus-chev {
+  background: #F6EDD3; color: #6E5414;
+  font-size: 13px; font-weight: 600;
+  border: 1px solid #E6CD8A;
+}
+.qsi-plus-chev:hover { background: #E6CD8A; transform: translateY(-50%); }
+.qsi-helper {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px; color: #8a7c63; margin-top: 6px;
+}
+.qsi-dd {
+  position: absolute; left: 0; right: 0; top: calc(100% + 4px);
+  z-index: 9999;
+  background: #fff;
+  border: 1px solid #E6DBC2;
+  border-radius: 10px;
+  max-height: 240px; overflow-y: auto;
+  padding: 4px 0;
+  box-shadow: 0 6px 18px rgba(26, 20, 10, 0.06);
+}
+.qsi-dd-up { top: auto; bottom: calc(100% + 4px); }
+.qsi-dd-hdr {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 9px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: #b8ac95;
+  padding: 10px 14px 6px;
+}
+.qsi-dd-empty {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px; color: #8a7c63;
+  font-style: italic; padding: 10px 14px;
+}
+.qsi-dd-row {
+  height: 40px; padding: 0 14px;
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; transition: background 100ms;
+}
+.qsi-dd-row:hover, .qsi-dd-row-hi { background: #F6EDD3; }
+.qsi-dd-row:hover .qsi-dd-x, .qsi-dd-row-hi .qsi-dd-x { opacity: 1; }
+.qsi-dd-val {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px; color: #1a140a;
+}
+.qsi-dd-x {
+  width: 20px; height: 20px; border-radius: 5px;
+  background: transparent; color: #b8ac95;
+  border: none; font-size: 11px; cursor: pointer;
+  opacity: 0;
+  transition: opacity 150ms, background 100ms, color 100ms;
+}
+.qsi-dd-x:hover { background: #FBEFEF; color: #B23A3A; }
+.qsi-saved {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px; color: #1F7A48; margin-top: 6px;
+}
+.qsi-removed {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 11px; color: #8a7c63; margin-top: 6px;
+}

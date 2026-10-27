@@ -1,0 +1,1 @@
+ALTER TABLE public.gwv_attendance_settings ADD COLUMN IF NOT EXISTS enable_auto_checkin_prompt boolean NOT NULL DEFAULT true;

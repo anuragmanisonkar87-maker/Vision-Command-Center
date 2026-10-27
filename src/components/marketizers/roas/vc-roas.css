@@ -1,0 +1,283 @@
+/* Vision Center — ROAS Tracker scoped design system.
+ * Inspired by IPC Control Hub's calm, premium calculator rhythm
+ * (sticky compact step rail, narrow column, tiny uppercase labels,
+ * 44px inputs, generous breathing room, gold focus). All rules live
+ * under .vc-roas so nothing else in Marketizers / Vision Center moves.
+ */
+
+.vc-roas {
+  --vc-ink: #1a140a;
+  --vc-paper: #FBF7EE;
+  --vc-cream: #F4ECDB;
+  --vc-cream-soft: #F8F2E2;
+  --vc-line: #E6DBC2;
+  --vc-line-soft: #EFE6CF;
+  --vc-mute: #8a7c63;
+  --vc-mute-soft: #b8ac95;
+  --vc-gold: #B8923F;
+  --vc-gold-pale: #F6EDD3;
+  --vc-gold-deep: #6E5414;
+
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--vc-ink);
+}
+
+/* ---------- Container width ---------- */
+.vc-roas .panel {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--vc-paper);
+  border: 1px solid var(--vc-line);
+  border-radius: 14px;
+  padding: 32px 36px !important;
+}
+
+/* ---------- Inputs (calm, 44px, gold focus) ---------- */
+.vc-roas input,
+.vc-roas select,
+.vc-roas textarea {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--vc-ink);
+  background: #fff;
+  border: 1px solid var(--vc-line);
+  border-radius: 8px;
+  padding: 11px 14px;
+  transition: border-color 120ms, box-shadow 120ms;
+  box-shadow: none;
+  outline: none;
+}
+.vc-roas input::placeholder,
+.vc-roas textarea::placeholder { color: #c9bfa5; }
+.vc-roas input:focus,
+.vc-roas select:focus,
+.vc-roas textarea:focus {
+  border-color: var(--vc-gold);
+  box-shadow: 0 0 0 3px rgba(184, 146, 63, 0.12);
+}
+.vc-roas input[type="date"],
+.vc-roas input[type="time"] { padding-right: 10px; }
+
+/* ---------- Field labels — quiet metadata ---------- */
+.vc-roas label,
+.vc-roas .field-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--vc-mute);
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* ---------- Buttons ---------- */
+.vc-roas button {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.vc-roas .btn,
+.vc-roas .btn-primary,
+.vc-roas .btn-sm {
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 10px 18px;
+  transition: opacity 120ms, background 120ms, border-color 120ms;
+}
+.vc-roas .btn-sm { padding: 7px 14px; font-size: 12px; }
+
+/* ---------- Pill groups → segmented control ---------- */
+.vc-roas .pill,
+.vc-roas .pill-group button,
+.vc-roas .pill-btn {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--vc-line);
+  background: #fff;
+  color: var(--vc-mute);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 120ms;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.vc-roas .pill:hover,
+.vc-roas .pill-btn:hover { color: var(--vc-ink); border-color: var(--vc-mute-soft); }
+.vc-roas .pill.active,
+.vc-roas .pill[data-active="true"],
+.vc-roas .pill-btn.active {
+  background: var(--vc-gold-pale);
+  border-color: var(--vc-gold);
+  color: var(--vc-gold-deep);
+}
+
+/* ---------- Section dividers ---------- */
+.vc-roas .section-title,
+.vc-roas .sl {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--vc-mute);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--vc-line-soft);
+}
+
+/* ---------- Sticky compact stepper ---------- */
+.vc-roas .vc-stepper {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  background: var(--vc-paper);
+  padding: 14px 0 18px;
+  margin: -8px 0 18px;
+  border-bottom: 1px solid var(--vc-line-soft);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+}
+.vc-roas .vc-stepper .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 96px;
+  text-align: center;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.vc-roas .vc-stepper .step .num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  border: 1px solid var(--vc-line);
+  background: #fff;
+  color: var(--vc-mute);
+  transition: all 200ms;
+}
+.vc-roas .vc-stepper .step.active .num {
+  background: var(--vc-ink); color: var(--vc-gold); border-color: var(--vc-ink);
+}
+.vc-roas .vc-stepper .step.done .num {
+  background: var(--vc-gold); color: #fff; border-color: var(--vc-gold);
+}
+.vc-roas .vc-stepper .step .lbl {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--vc-mute);
+  margin-top: 8px;
+  font-weight: 500;
+}
+.vc-roas .vc-stepper .step.active .lbl { color: var(--vc-ink); }
+.vc-roas .vc-stepper .step.done .lbl { color: var(--vc-gold-deep); }
+.vc-roas .vc-stepper .conn {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 1px;
+  background: var(--vc-line);
+  margin: 14px -10px 0;
+  align-self: flex-start;
+}
+.vc-roas .vc-stepper .conn.done { background: var(--vc-gold); }
+
+/* ---------- Wizard page header (Cormorant) ---------- */
+.vc-roas .wiz-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 500;
+  margin: 4px 0 6px;
+  color: var(--vc-ink);
+  letter-spacing: 0.005em;
+}
+.vc-roas .wiz-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--vc-mute);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* ---------- Two-column rhythm (override auto-fit grids) ---------- */
+.vc-roas .vc-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+.vc-roas .vc-one-col { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (max-width: 720px) {
+  .vc-roas .vc-two-col { grid-template-columns: 1fr; }
+}
+
+/* Soften the cramped auto-fit grid in step 3 (CPL pillars etc.) */
+.vc-roas div[style*="auto-fit"][style*="170px"],
+.vc-roas div[style*="auto-fit"][style*="180px"] {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 20px 24px !important;
+}
+@media (min-width: 900px) {
+  .vc-roas div[style*="auto-fit"][style*="170px"],
+  .vc-roas div[style*="auto-fit"][style*="180px"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ---------- Disclosure (advanced fields) ---------- */
+.vc-roas details.vc-disclose {
+  margin-top: 18px;
+  border-top: 1px solid var(--vc-line-soft);
+  padding-top: 14px;
+}
+.vc-roas details.vc-disclose > summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--vc-gold-deep);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.vc-roas details.vc-disclose > summary::-webkit-details-marker { display: none; }
+.vc-roas details.vc-disclose > summary::after {
+  content: "+"; font-size: 14px; line-height: 1;
+}
+.vc-roas details.vc-disclose[open] > summary::after { content: "−"; }
+.vc-roas details.vc-disclose[open] > summary { margin-bottom: 16px; }
+
+/* ---------- Helper / hint text ---------- */
+.vc-roas .vc-helper {
+  font-size: 11px;
+  color: var(--vc-mute);
+  margin-top: 6px;
+}
+.vc-roas .vc-add-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--vc-gold-deep);
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.vc-roas .vc-add-link:hover { text-decoration: underline; }
+
+/* ---------- Summary strip ---------- */
+.vc-roas .summary-strip-wrap { max-width: 960px; margin: 0 auto 14px; }

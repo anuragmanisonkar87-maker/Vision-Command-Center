@@ -1,0 +1,10 @@
+project_id = "bxsxybznxnsqocyfqero"
+
+[functions.fetch-daily-leads-count]
+verify_jwt = false
+
+[functions.fetch-roas-master-sheet-tabs]
+verify_jwt = false
+
+[functions.ai-ledger-import]
+verify_jwt = false

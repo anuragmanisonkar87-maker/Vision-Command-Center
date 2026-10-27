@@ -1,0 +1,2 @@
+DELETE FROM marketizers_roas_sessions WHERE id IN ('48239c80-6009-45f2-9a18-a349bebb817f', '3d1fc863-c872-4098-a667-70af0ab8f05f');
+UPDATE marketizers_roas_import_mappings SET is_deleted = true WHERE id = '15e5027d-36f1-47f1-b18e-22b280dfb5fa';

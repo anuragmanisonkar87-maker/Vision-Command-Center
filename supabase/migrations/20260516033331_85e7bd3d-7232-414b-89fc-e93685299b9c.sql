@@ -1,0 +1,1 @@
+UPDATE public.marketizers_expense_entries SET is_deleted = true, deleted_at = now() WHERE id = 'beade88a-9bef-45a4-a6ac-09d8d536bab5';
